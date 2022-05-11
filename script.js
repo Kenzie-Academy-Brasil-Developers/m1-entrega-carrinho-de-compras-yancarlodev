@@ -66,9 +66,13 @@ tagBody.appendChild(mainContent)
 
 
 function listProducts () {
+    const cartSection = document.createElement('section')
+    cartSection.classList.add('checkoutScreen')
+    mainContent.appendChild(cartSection)
+
     const productList = document.createElement('ul')
     productList.classList.add('list')
-    mainContent.appendChild(productList)
+    cartSection.appendChild(productList)
 
     products.forEach(product => {
         const listItem = document.createElement('li')
@@ -117,6 +121,7 @@ listProducts()
 
 function listCart () {
     const cartSection = document.createElement('section')
+    cartSection.classList.add('productScreen')
     mainContent.appendChild(cartSection)
 
     const productCartList = document.createElement('ul')
