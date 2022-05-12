@@ -154,3 +154,24 @@ h1:hover, h2:hover, h3:hover, h4:hover{
     filter: brightness(0.95);
     box-shadow: 1px 0px 10px rgb(245, 240, 240);
 }
+
+.removeButton {
+    width: 20px;
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.removeButton:hover {
+    transform: scale(1.05);
+    transition: ease-in-out;
+    cursor: pointer;
+}
+
+.leftContainerCartItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

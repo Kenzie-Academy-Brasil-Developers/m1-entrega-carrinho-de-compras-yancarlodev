@@ -36,9 +36,7 @@ const products = [
     },
 ]
 
-let productsCart = [
-    
-]
+let productsCart = []
 
 const tagBody = document.querySelector('body')
 
@@ -144,6 +142,8 @@ renderProductList.classList.add('list')
 productCartList.appendChild(renderProductList)
 
 function listCart () {
+    let id = 0
+
     productsCart.forEach(produto => {
         const listItem = document.createElement('li')
         listItem.classList.add('moldure', 'defaultItem')
@@ -154,10 +154,37 @@ function listCart () {
         productName.innerText = produto.name
         listItem.appendChild(productName)
 
+        const leftContainer = document.createElement('div')
+        leftContainer.classList.add('leftContainerCartItem')
+        listItem.appendChild(leftContainer)
+
         const productValue = document.createElement('h3')
         productValue.classList.add('itemValue')
         productValue.innerText = `R$ ${produto.price.toFixed(2).replace('.', ',')}`
-        listItem.appendChild(productValue)
+        leftContainer.appendChild(productValue)
+
+        const removeButton = document.createElement('img')
+        removeButton.classList.add('removeButton')
+        removeButton.id = id
+        removeButton.src = './img/trash-can.png'
+        leftContainer.appendChild(removeButton)
+
+        listItem.addEventListener('mouseenter', event => {
+            removeButton.classList.add('visible')
+        })
+
+        listItem.addEventListener('mouseleave', event => {
+            removeButton.classList.remove('visible')
+        })
+
+        removeButton.addEventListener('click', event => {
+            productsCart.splice(removeButton.id, 1)
+            renderProductList.innerHTML = ''
+            listCart()
+            sumTotal()
+        })
+
+        id++
     })
 }
 
